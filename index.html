@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geek Squad Email Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Geek Squad Service Email Tool</h1>
+            <p class="subtitle">Generate customer service emails</p>
+        </header>
+
+        <form id="emailForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="customerName">Name</label>
+                    <input type="text" id="customerName" name="customerName" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Email Address <span class="required">*</span></label>
+                    <input type="email" id="emailAddress" name="emailAddress" placeholder="customer@example.com" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="storeNumber">
+                        Store Number <span class="required">*</span>
+                        <span class="help-text-inline">(3 or 4 digits)</span>
+                    </label>
+                    <input type="text" id="storeNumber" name="storeNumber" placeholder="630 or 1234" maxlength="4" required>
+                    <span class="error-message" id="storeError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderNumber">
+                        Order Number
+                        <span class="help-text-inline">(SSSS-YYMMDD-#####)</span>
+                    </label>
+                    <input type="text" id="orderNumber" name="orderNumber" placeholder="0630-250814-56874">
+                    <span class="error-message" id="orderError"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand" name="brand" placeholder="Samsung">
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" placeholder="UN55TU8000FXZA">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" id="serviceExchangeBtn">
+                    <span class="btn-icon">📧</span>
+                    Service Exchange
+                </button>
+                <button type="button" class="btn btn-secondary" id="unitReturnBtn">
+                    <span class="btn-icon">📦</span>
+                    Unit Return
+                </button>
+            </div>
+        </form>
+
+        <footer>
+            <p>Best Buy / Geek Squad Service Tool</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
