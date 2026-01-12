@@ -76,6 +76,28 @@
         </footer>
     </div>
 
+    <!-- High Importance Reminder Modal -->
+    <div id="reminderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-icon">⚠️</span>
+                <h2>Important Reminder!</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">Don't forget to set your email to <strong>High Importance</strong> in Outlook!</p>
+                <p class="countdown-message">Opening Outlook in <span id="countdown">5</span> seconds...</p>
+                <ol class="modal-instructions">
+                    <li>Outlook will open automatically in a few seconds</li>
+                    <li>When it opens, click the <strong>High Importance</strong> button (red exclamation mark)</li>
+                    <li>Review your email and click <strong>Send</strong></li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModal" class="btn btn-primary btn-large">I Understand - Close</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -16,6 +16,68 @@ const orderError = document.getElementById('orderError');
 const serviceExchangeBtn = document.getElementById('serviceExchangeBtn');
 const unitReturnBtn = document.getElementById('unitReturnBtn');
 
+// Modal elements
+const modal = document.getElementById('reminderModal');
+const closeModalBtn = document.getElementById('closeModal');
+const countdownElement = document.getElementById('countdown');
+
+// Variable to store countdown interval
+let countdownInterval = null;
+
+// ============================================================================
+// Modal Functions
+// ============================================================================
+
+function showModal() {
+    modal.classList.add('show');
+    closeModalBtn.focus();
+}
+
+function closeModal() {
+    modal.classList.remove('show');
+    // Clear countdown interval if it exists
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+}
+
+function startCountdown(callback) {
+    let timeLeft = 5;
+    countdownElement.textContent = timeLeft;
+    
+    countdownInterval = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+            // Execute callback (open Outlook)
+            callback();
+            // Optionally close modal after opening Outlook
+            // closeModal(); // Uncomment if you want modal to auto-close
+        }
+    }, 1000);
+}
+
+// Close modal when clicking the button
+closeModalBtn.addEventListener('click', closeModal);
+
+// Close modal when clicking outside the modal content
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeModal();
+    }
+});
+
 // ============================================================================
 // Utility Functions
 // ============================================================================
@@ -255,8 +317,13 @@ function handleEmailGeneration(templateType) {
         body = getUnitReturnTemplate(formattedStoreNum, orderNum, customerName, brand, model);
     }
     
-    // Open mailto link
-    openMailto(email, ccEmails, subject, body);
+    // Show modal FIRST with countdown
+    showModal();
+    
+    // Start countdown, then open mailto link when done
+    startCountdown(() => {
+        openMailto(email, ccEmails, subject, body);
+    });
 }
 
 // ============================================================================
